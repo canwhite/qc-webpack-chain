@@ -3,13 +3,14 @@ const htmlPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin }= require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const config = new Config();
+
 /* const merge = config.merge; */
 const path = require("path");
 const resolve  = file =>path.resolve(__dirname,file);
 //entry
 config.entry("index").add(resolve("src/index.js"))
-config.entry("test").add(resolve("src/test.js"))
-
+config.entry("test").add(resolve("src/test.js")) 
+ 
 
 //output
 config.output
@@ -98,10 +99,17 @@ plugin:一般是在打包前或打包后对结果进行再次操作
 config.plugin("clean")
     .use(CleanWebpackPlugin)   
 config.plugin("html")//起个名字
-    .use(htmlPlugin)//具体使用
+    .use(htmlPlugin,[
+      {
+        title: 'Webpack-demos',
+        template:resolve("public/index.html"),
+        filename: 'index.html'
+      }
+    ])//具体使用
     .tap(args=>args);//自己的操作
 config.plugin('minicss')
     .use(MiniCssExtractPlugin)
+
 //别名
 config.resolve.alias
 .set("@",resolve("src"))//使用的时候@/就是src/

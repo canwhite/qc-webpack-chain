@@ -1,5 +1,2 @@
-function test(){
-    console.log("test")
-    let a = 2;
-}
-export default test;
+var con = document.getElementById("content");
+con.innerHTML = "hahahhahaha"
