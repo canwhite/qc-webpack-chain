@@ -15,12 +15,20 @@ const webpackConfig = merge(config,{
 		port: 3000, //端口   
 		host: '127.0.0.1', //局域网访问可填写'0.0.0.0'
 		hot: true, //启动热更新 
-		//filename: 'bundle.js', //入口文件引入
-        proxy:{
+		static: {
+		 	directory: resolve("public"),
+		},
+		compress: true,
+		proxy:{
             
-        }
-       
+        },
 	},
+	/* optimization: {
+		splitChunks: {
+		  // include all types of chunks
+		  chunks: 'all',
+		},
+	}, */
 
 
 

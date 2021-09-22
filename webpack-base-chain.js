@@ -3,10 +3,10 @@ const htmlPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin }= require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const config = new Config();
-
 /* const merge = config.merge; */
 const path = require("path");
 const resolve  = file =>path.resolve(__dirname,file);
+/* 
 //entry
 config.entry("index").add(resolve("src/index.js"))
 config.entry("test").add(resolve("src/test.js")) 
@@ -19,7 +19,18 @@ config.output
     .libraryTarget("umd")//commonjs or umd经常会用到
     .publicPath("./")//资源前缀
     .end()//如果使用的过程中需要拿到config实例，进行其它操作，就可以调用一下end
+ */
 
+//webpack多个js合并成一个
+//entry
+config.entry("index").add(resolve("src/index.js")).add(resolve("src/test.js")).end();
+//output
+config.output
+    .path(resolve("dist"))
+    .filename("bundle.js")
+    .libraryTarget("umd")//commonjs or umd经常会用到
+    .publicPath("./")//资源前缀
+    .end()//如果使用的过程中需要拿到config实例，进行其它操作，就可以调用一下end
 
 
 
@@ -96,8 +107,8 @@ plugin:一般是在打包前或打包后对结果进行再次操作
 插件的作用主要是解决loader所无法解决的其他事情
 生成html，清理dist，打开浏览器等
 ------------------------------------------------------*/
-config.plugin("clean")
-    .use(CleanWebpackPlugin)   
+/* config.plugin("clean")
+    .use(CleanWebpackPlugin)    */
 config.plugin("html")//起个名字
     .use(htmlPlugin,[
       {
