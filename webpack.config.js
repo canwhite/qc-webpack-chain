@@ -16,7 +16,7 @@ const webpackConfig = merge(config,{
 		host: '127.0.0.1', //局域网访问可填写'0.0.0.0'
 		hot: true, //启动热更新 
 		static: {
-		 	directory: resolve("public"),
+			directory: resolve("dist"),
 		},
 		compress: true,
 		proxy:{
