@@ -15,6 +15,9 @@ const webpackConfig = merge(config,{
 		hot: true, //启动热更新 
 		static: {
 			directory: resolve("dist"),
+			//热更新需要是默认路径/,所以这里加上环境变量判断
+			//并且output的publicPath需要和这里保持一致
+			//so , base里也需要判断
 			publicPath:env == "prod"?"./":"/",
 		},
 		compress: true,
