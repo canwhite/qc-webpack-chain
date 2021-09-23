@@ -9,7 +9,6 @@ var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 const webpackConfig = merge(config,{
 
-
     //本地调试服务配置
     devServer: {  
 		port: 3000, //端口   
@@ -17,6 +16,7 @@ const webpackConfig = merge(config,{
 		hot: true, //启动热更新 
 		static: {
 			directory: resolve("dist"),
+			// publicPath:"/"
 		},
 		compress: true,
 		proxy:{

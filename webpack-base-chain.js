@@ -29,7 +29,7 @@ config.output
     .path(resolve("dist"))
     .filename("bundle.js")
     .libraryTarget("umd")//commonjs or umd经常会用到
-    .publicPath("./")//资源前缀
+    /* .publicPath("/")//资源前缀 */
     .end()//如果使用的过程中需要拿到config实例，进行其它操作，就可以调用一下end
 
 
