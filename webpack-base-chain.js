@@ -6,6 +6,7 @@ const config = new Config();
 /* const merge = config.merge; */
 const path = require("path");
 const resolve  = file =>path.resolve(__dirname,file);
+const env = process.env.FLAG || "dev";
 /* 
 //entry
 config.entry("index").add(resolve("src/index.js"))
@@ -29,7 +30,7 @@ config.output
     .path(resolve("dist"))
     .filename("bundle.js")
     .libraryTarget("umd")//commonjs or umd经常会用到
-    /* .publicPath("/")//资源前缀 */
+    .publicPath(env=="prod"?"./":"/")//资源前缀 */
     .end()//如果使用的过程中需要拿到config实例，进行其它操作，就可以调用一下end
 
 
@@ -120,7 +121,7 @@ config.plugin("html")//起个名字
     .tap(args=>args);//自己的操作
 config.plugin('minicss')
     .use(MiniCssExtractPlugin)
-
+ 
 //别名
 config.resolve.alias
 .set("@",resolve("src"))//使用的时候@/就是src/
